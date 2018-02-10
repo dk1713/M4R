@@ -1,26 +1,26 @@
-function S = setupKron( spin, N )
+function S = setupKron( index, N, spin )
 % This function sets up the S.
 %
-% Inputs:   N:      (INT) Number of half spins in the system.
-% Output:   S:      (2^N x 2^N x N FLT) Spin Operators (Kronecker Pauli)
+% Inputs:
+%   index:  (INT) Index position of the spin.
+%   N:      (INT) Number of half spins in the system.
+%   spin:   (2 x 2 FLT) Pauli operator.
+% Output:   
+%   S:      (2^N x 2^N FLT) Spin Operators (Kronecker Pauli)
 
-S = zeros(2^N,2^N,N);
-
-for k = 1:N
-    front = 1;
-    back = 1;
+front = 1;
+back = 1;
     
-    if k > 1
-        front = eye(2^(k-1));
-    end
-    
-    Sx = kron(front,spin);
-    
-    if k < N
-        back = eye(2^(N-k));
-    end
-    
-    S(:,:,k) = kron(Sx,back);
+if index > 1
+    front = eye(2^(index-1));
 end
+    
+Sx = kron(front,spin);
+    
+if index < N
+    back = eye(2^(N-index));
+end
+    
+S = kron(Sx,back);
 
 end
