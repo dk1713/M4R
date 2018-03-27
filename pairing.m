@@ -1,7 +1,7 @@
 %% Topological pairing
 
 %% Initialise
-Jz = 1/2;
+Jz = 4;
 Jx = 1;
 Jy = 1;
 systemSize = 10;
