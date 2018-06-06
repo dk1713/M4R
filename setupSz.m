@@ -9,10 +9,11 @@ function S = setupSz( N )
 %   S:      (2^N x 2^N FLT) Spin Operators (Kronecker Pauli)
 
 Sz = [[1,0];[0,-1]];
-S = zeros(2^N);
+S = kron(Sz, eye(2^(N-1)));
 
-for j = 1:N
-    S = S + setupKron(j, N, Sz);
+for j = 1:N-1
+    Szz = kron(eye(2^j), Sz);
+    S = S + kron(Szz, eye(2^(N - j - 1)));
 end
 
 end
